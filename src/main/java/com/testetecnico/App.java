@@ -33,7 +33,7 @@ public class App {
         WebElement link2 = driver.findElement(By.linkText("Anexo II."));
         link2.click();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
