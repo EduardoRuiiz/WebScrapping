@@ -1,2 +1,5 @@
 downloads/*
 !downloads/.gitkeep
+
+target/*
+!target/.gitkeep
