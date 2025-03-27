@@ -1,12 +1,18 @@
 package com.testetecnico;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -50,7 +56,12 @@ public class App {
             }
         }
         driver.quit();
-
+        String downloadPath = projectPath + "/downloads";
+        try {
+            compactarPasta(downloadPath, projectPath + "/target/Anexos.zip");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void wait(int miliseconds) {
@@ -77,6 +88,24 @@ public class App {
             System.out.println("Download concluído!");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void compactarPasta(String pastaOrigem, String zipDestino) throws IOException {
+        Path origemPath = Paths.get(pastaOrigem);
+        try (ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(zipDestino))) {
+            Files.walk(origemPath)
+                    .filter(path -> !Files.isDirectory(path))
+                    .forEach(path -> {
+                        ZipEntry zipEntry = new ZipEntry(origemPath.relativize(path).toString());
+                        try {
+                            zipOut.putNextEntry(zipEntry);
+                            Files.copy(path, zipOut);
+                            zipOut.closeEntry();
+                        } catch (IOException e) {
+                            System.err.println("Erro ao adicionar arquivo: " + path + " -> " + e.getMessage());
+                        }
+                    });
         }
     }
 }
