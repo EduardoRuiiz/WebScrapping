@@ -3,3 +3,6 @@ downloads/*
 
 target/*
 !target/.gitkeep
+
+output/*
+!output/.gitkeep
