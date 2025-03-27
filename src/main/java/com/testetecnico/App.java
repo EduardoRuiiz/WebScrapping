@@ -32,30 +32,40 @@ public class App {
         link1.click();
         WebElement link2 = driver.findElement(By.linkText("Anexo II."));
         link2.click();
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        wait(3000);
 
         List<String> abas = new ArrayList<>(driver.getWindowHandles());
 
-        driver.switchTo().window(abas.get(1));
-        String pdfUrl1 = driver.getCurrentUrl();
-        downloadPdf(pdfUrl1, "AnexoI");
+        for (int i = 0; i < abas.size(); i++) {
+            String aba = abas.get(i);
+            driver.switchTo().window(aba);
+            String url = driver.getCurrentUrl();
 
-        driver.switchTo().window(abas.get(2));
-        String pdfUrl2 = driver.getCurrentUrl();
-        downloadPdf(pdfUrl2, "AnexoII");
-
+            if (url.endsWith(".pdf")) {
+                String nomeArquivo = url.substring(url.lastIndexOf('/') + 1);
+                driver.switchTo().window(aba);
+                String pdfUrl = driver.getCurrentUrl();
+                System.out.println("URL do PDF: " + pdfUrl);
+                downloadPdf(pdfUrl, nomeArquivo);
+            }
+        }
         driver.quit();
 
+    }
+
+    private static void wait(int miliseconds) {
+
+        try {
+            Thread.sleep(miliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void downloadPdf(String pdfUrl, String name) {
 
         String projectPath = System.getProperty("user.dir");
-        String downloadPath = projectPath + "/downloads/" + name + ".pdf";
+        String downloadPath = projectPath + "/downloads/" + name;
         try {
             URL url = new URL(pdfUrl);
             InputStream in = url.openStream();
