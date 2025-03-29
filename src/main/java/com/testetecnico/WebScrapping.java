@@ -18,6 +18,7 @@ public class WebScrapping {
 
     public static void run() {
 
+        System.out.println("Iniciando webscraping...");
         String projectPath = System.getProperty("user.dir");
         String driverPath = projectPath + "/drivers/chromedriver.exe";
 
@@ -80,7 +81,7 @@ public class WebScrapping {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
             fos.close();
             in.close();
-            System.out.println("Download concluído!");
+            System.out.println("Download concluido!");
         } catch (Exception e) {
             e.printStackTrace();
         }
