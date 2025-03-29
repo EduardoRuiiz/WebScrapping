@@ -22,8 +22,8 @@ Este projeto é parte de um teste técnico para a IntuitiveCare.
 
 ## Prints do funcionamento do código
 ### Tela principal
-![print1](prints\print_1.png)
+![print1](prints/print_1.png)
 ### Web Scrapping
-![print2](prints\print_2.png)
+![print2](prints/print_2.png)
 ### Transformação de dados
-![print3](prints\print_3.png)
+![print3](prints/print_3.png)
