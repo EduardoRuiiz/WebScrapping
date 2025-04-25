@@ -1,6 +1,6 @@
-# WebScrapping Java
+# WebScrapping e transformação de dados Java
 
-Este projeto é um teste de WebScrapping em Java com Selenium
+Este projeto é um teste de WebScrapping e transformação de dados em Java com Selenium
 
 ## Pré-requisitos
 
