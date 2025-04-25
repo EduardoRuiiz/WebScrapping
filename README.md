@@ -1,6 +1,6 @@
 # WebScrapping Java
 
-Este projeto é parte de um teste de WebScrapping em Java com Selenium
+Este projeto é um teste de WebScrapping em Java com Selenium
 
 ## Pré-requisitos
 
