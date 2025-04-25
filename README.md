@@ -1,6 +1,6 @@
-# Teste Técnico - IntuitiveCare
+# WebScrapping Java
 
-Este projeto é parte de um teste técnico para a IntuitiveCare.
+Este projeto é parte de um teste de WebScrapping em Java
 
 ## Pré-requisitos
 
